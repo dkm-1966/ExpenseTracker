@@ -45,6 +45,7 @@ const Category: FC<ICategoryProps> = ({ categories, category, type }) => {
     if (removingCandidate) {
       console.log("Removing");
       dispatch(actions.cascadeRemove(removingCandidate.name));
+      dispatch(removeSelectedCategory(removingCandidate.name));
       dispatch(actions.remove(removingCandidate.id));
     }
   };
