@@ -40,16 +40,21 @@ const Chat = () => {
           data: { income, expense },
           message: formattedMessage,
         }),
+        signal: controller.signal,
       });
 
       const analysisResult = await response.json();
       setAnalysis(analysisResult.choices[0].message.content);
     } catch (error) {
+      if (error instanceof Error && error.name === "AbortError") {
+        return;
+      }
+
       console.error(error);
       setAnalysis("Failed to retrieve analysis.");
-    } finally {
-      setLoading(false);
     }
+
+    setLoading(false);
   };
 
   const handleMessageChange = (event: React.ChangeEvent<HTMLInputElement>) => {

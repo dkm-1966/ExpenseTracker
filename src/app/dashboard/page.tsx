@@ -7,7 +7,6 @@ import { useAppSelector } from "@/hooks/redux";
 import { filterData } from "@/utils/filtration";
 import FiltrationParams from "@/components/FiltrationParams";
 import PeriodRemote from "@/components/PeriodRemote";
-import { IIncomeExpense } from "@/types/types";
 
 const Dashboard: FC = () => {
   const [period, setPeriod] = useState<string>("");
