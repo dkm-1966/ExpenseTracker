@@ -7,15 +7,14 @@ import { IAddingFormWrapperProps } from "@/types/types";
 import Button from "./UI/Button";
 import Modal from "./UI/Modal";
 import { useAppSelector } from "@/hooks/redux";
-import { setExpense, setIncome } from "@/store/slices/financesSlice";
 
 const AddingFormWrapper: FC<IAddingFormWrapperProps> = ({ type }) => {
   const [showAddingForm, setShowAddingForm] = useState<boolean>(false);
+  const { incomeCategories, expenseCategories } = useAppSelector(
+    (state) => state.categories
+  );
 
-  const categories =
-    type === "income"
-      ? useAppSelector((state) => state.categories.incomeCategories)
-      : useAppSelector((state) => state.categories.expenseCategories);
+  const categories = type === "income" ? incomeCategories : expenseCategories;
 
   const categoriesNames = useCategoryNames(categories);
 

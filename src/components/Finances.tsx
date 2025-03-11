@@ -12,10 +12,9 @@ const Finances: FC<IFinancesProps> = ({ type }) => {
   const selectedCategories = useAppSelector(
     (state) => state.categories.selectedCategory
   );
-  const finances =
-    type === "income"
-      ? useAppSelector((state) => state.finances.income)
-      : useAppSelector((state) => state.finances.expense);
+
+  const { income, expense } = useAppSelector((state) => state.finances);
+  const finances = type === "income" ? income : expense;
 
   const removeFinance = type === "income" ? removeIncome : removeExpense;
 

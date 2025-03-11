@@ -8,15 +8,13 @@ import { IFinanceCardProps } from "@/types/types";
 import { useAppSelector } from "@/hooks/redux";
 
 const FinanceCard: FC<IFinanceCardProps> = ({ title, link }) => {
-  const ratio =
-    title === "Income"
-      ? useAppSelector((state) => state.calculatedFinances.incomeRatio)
-      : useAppSelector((state) => state.calculatedFinances.expenseRatio);
+  const { incomeRatio, expenseRatio, calculatedIncome, calculatedExpense } =
+    useAppSelector((state) => state.calculatedFinances);
+
+  const ratio = title === "Income" ? incomeRatio : expenseRatio;
 
   const calculatedFinance =
-    title === "Income"
-      ? useAppSelector((state) => state.calculatedFinances.calculatedIncome)
-      : useAppSelector((state) => state.calculatedFinances.calculatedExpense);
+    title === "Income" ? calculatedIncome : calculatedExpense;
 
   let profitable;
 

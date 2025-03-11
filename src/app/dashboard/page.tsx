@@ -52,8 +52,8 @@ const Dashboard: FC = () => {
   };
 
   function distribution(type: string, period: string) {
-    let incomeCopy = [...income];
-    let expenseCopy = [...expense];
+    const incomeCopy = [...income];
+    const expenseCopy = [...expense];
 
     if (type === "income") {
       setChartData(filterData(period, type, incomeCopy, year, month));

@@ -12,10 +12,12 @@ import Category from "./Category";
 import { ICategoriesProps } from "@/types/types";
 
 const Categories: FC<ICategoriesProps> = ({ type }) => {
-  const categories =
-    type === "income"
-      ? useAppSelector((state) => state.categories.incomeCategories)
-      : useAppSelector((state) => state.categories.expenseCategories);
+  const { incomeCategories, expenseCategories } = useAppSelector(
+    (state) => state.categories
+  );
+
+  const categories = type === "income" ? incomeCategories : expenseCategories;
+
   const selectedCategory = useAppSelector(
     (state) => state.categories.selectedCategory
   );

@@ -11,8 +11,8 @@ export const filterData = (
   const currentDay = new Date().getDay();
   const currentDate = new Date();
 
-  let chartDataset: number[] = [];
-  let chartLabels: (string | number)[] = [];
+  const chartDataset: number[] = [];
+  const chartLabels: (string | number)[] = [];
   let chartData: IChartData = {
     labels: chartLabels,
     datasets: [

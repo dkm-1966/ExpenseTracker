@@ -19,18 +19,15 @@ const FinanceVisualization: FC<IFinanceVisualizationProps> = ({ type }) => {
   const [year, setYear] = useState<number>(new Date().getFullYear());
   const [month, setMonth] = useState<number>(new Date().getMonth());
   const { selectedCategory } = useAppSelector((state) => state.categories);
+  const { income, expense } = useAppSelector((state) => state.finances);
+  const { incomeCategories, expenseCategories } = useAppSelector(
+    (state) => state.categories
+  );
+  const finances = type === "income" ? income : expense;
 
-  const categories =
-    type === "income"
-      ? useAppSelector((state) => state.categories.incomeCategories)
-      : useAppSelector((state) => state.categories.expenseCategories);
+  const categories = type === "income" ? incomeCategories : expenseCategories;
 
   const categoriesNames = useCategoryNames(categories);
-
-  const finances =
-    type === "income"
-      ? useAppSelector((state) => state.finances.income)
-      : useAppSelector((state) => state.finances.expense);
 
   useEffect(() => {
     const colors = [];
